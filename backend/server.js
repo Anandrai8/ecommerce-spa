@@ -19,10 +19,11 @@ app.use(morgan("dev"));
 // -------------------------------
 app.use(
   cors({
-    origin: (process.env.CLIENT_ORIGIN || "http://localhost:5173").split(","),
-
-   
-    credentials: false,
+    origin: [
+      "http://localhost:5173", 
+      "https://lustrous-kashata-03467aa.netlify.app" 
+    ],
+    credentials: true, 
   })
 );
 
