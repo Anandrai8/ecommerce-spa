@@ -13,9 +13,15 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("dev"));
+
+// -------------------------------
+// CORS configuration
+// -------------------------------
 app.use(
   cors({
     origin: (process.env.CLIENT_ORIGIN || "http://localhost:5173").split(","),
+
+   
     credentials: false,
   })
 );
@@ -26,6 +32,9 @@ mongoose
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB connection error", err));
 
+// -------------------------------
+// Routes
+// -------------------------------
 app.get("/", (req, res) => res.json({ status: "ok" }));
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
